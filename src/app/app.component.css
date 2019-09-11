@@ -1,0 +1,11 @@
+.main{
+    display: flex;
+}
+
+realtime-table{
+    flex: 1;
+}
+
+line-chart{
+    flex: 3
+}

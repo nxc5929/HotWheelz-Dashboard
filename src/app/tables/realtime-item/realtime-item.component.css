@@ -1,0 +1,11 @@
+.main{
+    display: flex;
+}
+
+.title{
+    flex: 3
+}
+
+.value{
+    flex: 1
+}

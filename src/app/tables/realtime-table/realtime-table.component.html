@@ -1,0 +1,5 @@
+<mat-grid-list cols="1" rowHeight="2:1">
+    <mat-grid-tile *ngFor="let dataItem of realTimeData">
+        <realtime-item title={{dataItem.title}} value={{dataItem.value}}></realtime-item>
+    </mat-grid-tile>
+</mat-grid-list>
