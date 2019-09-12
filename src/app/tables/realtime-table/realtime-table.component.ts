@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'realtime-table',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./realtime-table.component.css']
 })
 export class RealtimeTableComponent implements OnInit {
+
+  @Input() title: string;
 
   realTimeData = [
     {title: "Data 1", value: "1"},

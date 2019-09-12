@@ -1,11 +1,7 @@
-.main{
-    display: flex;
+mat-card{
+    width: 100%;
 }
 
-realtime-table{
-    flex: 1;
-}
-
-line-chart{
-    flex: 3
+mat-grid-tile{
+    border: solid darkgray;
 }

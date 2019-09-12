@@ -1,4 +1,38 @@
-<div class="main">
-    <realtime-table></realtime-table>
-    <line-chart></line-chart>
-</div>
+<mat-grid-list cols="6" rowHeight="250px">
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+        <!-- RealTime -->
+        <mat-card>
+            <realtime-table title="Real Time"></realtime-table>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="4" [rowspan]="2">
+        <!-- Graph -->
+        <mat-card>
+            <line-chart></line-chart>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="3">
+        <!-- Auxilary -->
+        <mat-card>
+            <realtime-table title="Auxilary"></realtime-table>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <!-- Voltage -->
+        <mat-card>
+            <gauge title="Voltage"></gauge>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <!-- Battery Temp 1 -->
+        <mat-card>
+            <heat-map title="Battery Temp 1"></heat-map>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <!-- Battery Temp 2 -->
+        <mat-card>
+            <heat-map title="Battery Temp 2"></heat-map>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

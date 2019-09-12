@@ -10,10 +10,13 @@ export class LineChartComponent implements OnInit {
   highcharts = Highcharts;
   chartOptions = {
     chart: {
-      zoomType: 'x'
+      zoomType: 'x',
     },
     title: {
       text: null
+    },
+    credits: {
+      enabled: false
     },
     yAxis: [{ // Primary yAxis
       title: {

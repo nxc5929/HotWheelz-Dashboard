@@ -6,7 +6,10 @@ import { LineChartComponent } from './graphs/line-chart/line-chart.component';
 import { HighchartsChartComponent } from 'highcharts-angular';
 import { RealtimeTableComponent } from './tables/realtime-table/realtime-table.component';
 import { RealtimeItemComponent } from './tables/realtime-item/realtime-item.component';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { HeatMapComponent } from './graphs/heat-map/heat-map.component';
+import { GaugeComponent } from './graphs/gauge/gauge.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +17,14 @@ import {MatGridListModule} from '@angular/material/grid-list';
     LineChartComponent,
     HighchartsChartComponent,
     RealtimeTableComponent,
-    RealtimeItemComponent
+    RealtimeItemComponent,
+    HeatMapComponent,
+    GaugeComponent
   ],
   imports: [
     BrowserModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
