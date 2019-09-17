@@ -55,11 +55,13 @@ export class GaugeComponent implements OnInit {
     // the value axis
     yAxis: {
       stops: [
-        [0.1, '#55BF3B'], // green
-        [0.5, '#DDDF0D'], // yellow
-        [0.9, '#DF5353'] // red
+        [0, '#DF5353'], // red
+        [0.6, '#DDDF0D'], // yellow
+        [0.8, '#55BF3B'] // green
       ],
       lineWidth: 0,
+      max: 160,
+      min: 120,
       minorTickInterval: null,
       tickAmount: 2,
       title: {
@@ -71,7 +73,7 @@ export class GaugeComponent implements OnInit {
     },
     series: [{
       name: 'Speed',
-      data: [80]
+      data: [155]
     }],
     plotOptions: {
       solidgauge: {

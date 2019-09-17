@@ -44,6 +44,7 @@ export class HeatMapComponent implements OnInit {
     },
 
     colorAxis: {
+      reversed: false,
       min: 0,
       minColor: '#FFFFFF',
       maxColor: '#FF0000'
@@ -65,7 +66,7 @@ export class HeatMapComponent implements OnInit {
       name: 'Battery Temp',
       borderWidth: 1,
       data: [
-        [0, 0, 5], [1, 0, 3], [2, 0, 1], [3, 0, 7], [4, 0, 3], [5, 0, 1],
+        [0, 0, 5], [1, 0, 10], [2, 0, 1], [3, 0, 7], [4, 0, 3], [5, 0, 1],
         [0, 1, 7], [1, 1, 2], [2, 1, 0], [3, 1, 5], [4, 1, 3], [5, 1, 3],
       ],
       dataLabels: {
