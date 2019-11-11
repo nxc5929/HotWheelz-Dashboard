@@ -1,6 +1,11 @@
 {
   "name": "hot-wheelz-dashboard",
   "version": "0.0.0",
+  "main": "server.js",
+  "bin": "server.js",
+  "pkg": {
+    "assets": "dist/**/*"
+  },
   "scripts": {
     "ng": "ng",
     "start": "node server.js",

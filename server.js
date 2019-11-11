@@ -1,3 +1,6 @@
+//--------------------------------------------------------
+//------------------WEB SERVER------------------------
+//--------------------------------------------------------
 const express = require('express');
 const path = require('path');
 
@@ -13,9 +16,82 @@ app.get('/*', function(req,res) {
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 4200);
 
-// var http = require("http");
-// setInterval(function() {
-//     http.get("http://nfl-picks-connor-stage.herokuapp.com");
-//     http.get("http://nfl-picks-connor-api.herokuapp.com");
-// }, 300000); // every 5 minutes (300000)
+
+//--------------------------------------------------------
+//------------------BROSWER STREAM------------------------
+//--------------------------------------------------------
+var SERVER_PORT = 8081;
+var WebSocketService = require('ws').Server
+var wss = new WebSocketService({port: SERVER_PORT})
+var connections = new Array;
+
+wss.on('connection', newConnection)
+
+function newConnection(client){
+    console.log("New Browser Conenction");
+    connections.push(client);
+    client.on('close', function() { // when a client closes its connection
+            console.log("Browser Connection Closed"); // print it out
+            var position = connections.indexOf(client); // get the client's position in the array
+            connections.splice(position, 1); // and delete it from the array
+        });
+}
+
+function broadcastToBrowsers(data){
+    for(connection in connections){
+        connections[connection].send(data);
+    }
+}
+
+//--------------------------------------------------------
+// -----------------------SERIAL PORT---------------------
+//--------------------------------------------------------
+var SerialPort = require('serialport');
+var portNam = process.argv[2]
+var myPort = new SerialPort(portNam, 9600);
+var parser = new SerialPort.parsers.Readline();
+var connectedToXbee = false;
+myPort.pipe(parser)
+
+myPort.on('open', portOpened);
+parser.on('data', readNewData);
+myPort.on('close', portClosed);
+myPort.on('error', showError);
+
+function portOpened(){
+    console.log("Port Opened!");
+    connectedToXbee = true;
+    broadcastToBrowsers(connectionStatusMessage());
+}
+
+function portClosed(){
+    console.log("Port Closed!!");
+    connectedToXbee = false;
+    broadcastToBrowsers(connectionStatusMessage());
+}
+
+function readNewData(data){
+    broadcastToBrowsers(configureForUI(data));
+}
+
+function showError(){
+    console.log("AN ERROR HAS OCCURED!");
+}
+
+function connectionStatusMessage(){
+    return JSON.stringify({connection: connectedToXbee})
+}
+
+function configureForUI(data){
+    var json = JSON.parse(data);
+    var dataFormat = {
+        connection: connectedToXbee,
+        voltage: json["Voltage"], 
+        lineChart: {voltage: json["Voltage"], current: json["Voltage"] + 1, rpm: json["Voltage"] * 2}, 
+        realTime: [{name: "Voltage", value: json["Voltage"]}], 
+        aux: [{name: "Voltage", value: json["Voltage"]}]
+    };
+    return JSON.stringify(dataFormat);
+}
+
 

@@ -1,44 +1,50 @@
-<mat-grid-list cols="6" rowHeight="250px">
-    <mat-grid-tile [colspan]="1" [rowspan]="1">
+<mat-grid-list cols="6" rowHeight="125px">
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
         <!-- RealTime -->
         <mat-card>
             <realtime-table title="Real Time" [data]=allData.realTime></realtime-table>
         </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="4" [rowspan]="2">
+    <mat-grid-tile [colspan]="4" [rowspan]="4">
         <!-- Graph -->
         <mat-card>
             <line-chart [data]=allData.lineChart></line-chart>
         </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="2">
+    <mat-grid-tile [colspan]="1" [rowspan]="1" [style.background-color]="isConnected(allData.connected)">
+        <!-- Auxilary -->
+        <mat-card>
+            <h2>Connected to Xbee?</h2>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="3">
         <!-- Auxilary -->
         <mat-card>
             <realtime-table title="Auxilary" [data]=allData.aux></realtime-table>
         </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
         <!-- Voltage -->
         <mat-card>
             <gauge title="Voltage" [value]=allData.voltage></gauge>
         </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-grid-tile [colspan]="2" [rowspan]="2">
         <!-- Battery Temp 1 -->
         <mat-card>
-            <heat-map title="Battery Temp 1"></heat-map>
+            <heat-map title="Battery Temp: Module 1"></heat-map>
         </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-grid-tile [colspan]="2" [rowspan]="2">
         <!-- Battery Temp 2 -->
         <mat-card>
-            <heat-map title="Battery Temp 2"></heat-map>
+            <heat-map title="Battery Temp: Modeule 2"></heat-map>
         </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-grid-tile [colspan]="2" [rowspan]="2">
         <!-- Battery Temp 2 -->
         <mat-card>
-            <heat-map title="Battery Temp 2"></heat-map>
+            <heat-map title="Battery Temp: Module 3"></heat-map>
         </mat-card>
     </mat-grid-tile>
 </mat-grid-list>
