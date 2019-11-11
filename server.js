@@ -47,6 +47,7 @@ function broadcastToBrowsers(data){
 // -----------------------SERIAL PORT---------------------
 //--------------------------------------------------------
 var SerialPort = require('serialport');
+var bindings = require('bindings')
 var portNam = process.argv[2]
 var myPort = new SerialPort(portNam, 9600);
 var parser = new SerialPort.parsers.Readline();
