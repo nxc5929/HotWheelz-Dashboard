@@ -1,32 +1,38 @@
 <mat-grid-list cols="6" rowHeight="250px">
-    <mat-grid-tile [colspan]="1" [rowspan]="2">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
         <!-- RealTime -->
         <mat-card>
-            <realtime-table title="Real Time"></realtime-table>
+            <realtime-table title="Real Time" [data]=allData.realTime></realtime-table>
         </mat-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="4" [rowspan]="2">
         <!-- Graph -->
         <mat-card>
-            <line-chart></line-chart>
+            <line-chart [data]=allData.lineChart></line-chart>
         </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="3">
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
         <!-- Auxilary -->
         <mat-card>
-            <realtime-table title="Auxilary"></realtime-table>
+            <realtime-table title="Auxilary" [data]=allData.aux></realtime-table>
         </mat-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1" [rowspan]="1">
         <!-- Voltage -->
         <mat-card>
-            <gauge title="Voltage"></gauge>
+            <gauge title="Voltage" [value]=allData.voltage></gauge>
         </mat-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="2" [rowspan]="1">
         <!-- Battery Temp 1 -->
         <mat-card>
             <heat-map title="Battery Temp 1"></heat-map>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
+        <!-- Battery Temp 2 -->
+        <mat-card>
+            <heat-map title="Battery Temp 2"></heat-map>
         </mat-card>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="2" [rowspan]="1">

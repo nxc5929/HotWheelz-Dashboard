@@ -1,6 +1,6 @@
 <div>
     <h3>{{title}}</h3>
-<div *ngFor="let dataItem of realTimeData">
-    <realtime-item title={{dataItem.title}} value={{dataItem.value}}></realtime-item>
+<div *ngFor="let dataItem of data">
+    <realtime-item title={{dataItem.name}} value={{dataItem.value}}></realtime-item>
 </div>
 </div>

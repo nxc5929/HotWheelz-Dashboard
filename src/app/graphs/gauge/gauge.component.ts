@@ -15,16 +15,24 @@ export class GaugeComponent implements OnInit {
 
   @Input()
   set title(title: string){
-    console.log(title);
     this.chartOptions.title.text = title;
   }
+
+  @Input() 
+  set value(value: number){
+    this.chartOptions.series[0].data = [value];
+    this.updateFlag = true;
+  }
+
+  updateFlag = false;
 
   constructor() { }
 
   highcharts = Highcharts;
   chartOptions = {
     chart: {
-      type: 'solidgauge'
+      type: 'solidgauge',
+      animation: false
     },
 
     title: {
@@ -60,8 +68,8 @@ export class GaugeComponent implements OnInit {
         [0.8, '#55BF3B'] // green
       ],
       lineWidth: 0,
-      max: 160,
-      min: 120,
+      max: 250,
+      min: 150,
       minorTickInterval: null,
       tickAmount: 2,
       title: {
@@ -73,7 +81,7 @@ export class GaugeComponent implements OnInit {
     },
     series: [{
       name: 'Speed',
-      data: [155]
+      data: [0]
     }],
     plotOptions: {
       solidgauge: {
@@ -82,7 +90,10 @@ export class GaugeComponent implements OnInit {
           borderWidth: 0,
           useHTML: true
         }
-      }
+      },
+      series: {
+        animation: false
+    }
     }
   }
 

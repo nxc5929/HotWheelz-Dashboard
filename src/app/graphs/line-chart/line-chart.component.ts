@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
 
 @Component({
@@ -6,11 +6,35 @@ import * as Highcharts from 'highcharts';
   templateUrl: './line-chart.component.html',
   styleUrls: ['./line-chart.component.css']
 })
+
 export class LineChartComponent implements OnInit {
+
+  @Input()
+  set data(data: {voltage: 0, current: 0, rpm: 0}){
+    if(data.voltage){
+    this.chartOptions.series[0].data.push(data.rpm);//RPM
+    this.chartOptions.series[1].data.push(data.current);//Current
+    this.chartOptions.series[2].data.push(data.voltage)//Voltage
+    this.checkTooBig(this.chartOptions.series[0].data);
+    this.checkTooBig(this.chartOptions.series[1].data);
+    this.checkTooBig(this.chartOptions.series[2].data);
+    this.updateFlag = true;
+    }
+  }
+
+  checkTooBig(data: number[]){
+    if(data.length > 120){
+      data.shift();
+    }
+  }
+
+  updateFlag = false;
+
   highcharts = Highcharts;
   chartOptions = {
     chart: {
       zoomType: 'x',
+      animation: false
     },
     title: {
       text: null
@@ -80,7 +104,7 @@ export class LineChartComponent implements OnInit {
       type: 'spline',
       yAxis: 0,
       color: '#ff0000',
-      data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+      data: [],
       tooltip: {
         valueSuffix: ' RPM'
       }
@@ -89,7 +113,7 @@ export class LineChartComponent implements OnInit {
       type: 'spline',
       yAxis: 1,
       color: '#006400',
-      data: [1016, 1016, 1015.9, 1015.5, 1012.3, 1009.5, 1009.6, 1010.2, 1013.1, 1016.9, 1018.2, 1016.7],
+      data: [],
       tooltip: {
         valueSuffix: ' A'
       }
@@ -99,7 +123,7 @@ export class LineChartComponent implements OnInit {
       type: 'spline',
       yAxis: 2,
       color: '#0000ff',
-      data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+      data: [],
       tooltip: {
         valueSuffix: ' V'
       }
