@@ -15,7 +15,7 @@ app.get('/*', function(req,res) {
 
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 4200);
-
+console.log("Web Server Started... http://localhost:4200");
 
 //--------------------------------------------------------
 //------------------BROSWER STREAM------------------------
@@ -28,7 +28,7 @@ var connections = new Array;
 wss.on('connection', newConnection)
 
 function newConnection(client){
-    console.log("New Browser Conenction");
+    console.log("New Browser Connection");
     connections.push(client);
     client.on('close', function() { // when a client closes its connection
             console.log("Browser Connection Closed"); // print it out
