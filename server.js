@@ -84,6 +84,7 @@ function connectionStatusMessage(){
 
 function configureForUI(data){
     var json = JSON.parse(data);
+    saveData(json);
     var dataFormat = {
         connection: connectedToXbee,
         voltage: json["Voltage"], 
@@ -94,4 +95,23 @@ function configureForUI(data){
     return JSON.stringify(dataFormat);
 }
 
+//--------------------------------------------------------
+// -----------------------SAVING DATA---------------------
+//--------------------------------------------------------
+var fs = require("fs");
+var moment = require('moment');
+const folder = "./data/"
+if(!fs.existsSync(folder)){
+    fs.mkdirSync(folder);
+}
+const csvWriter = require('csv-write-stream');
+var writer = csvWriter();
+writer.pipe(fs.createWriteStream(folder + getTimeStamp() + ".csv"));
 
+function saveData(data){
+    writer.write(data);
+}
+
+function getTimeStamp(){
+    return moment().format('YYYY-MM-DD hh-mm-ssA');
+}
