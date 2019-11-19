@@ -5,3 +5,19 @@ mat-card{
 mat-grid-tile{
     border: solid darkgray;
 }
+
+#startButton{
+    background-color: lawngreen;
+    color: black;
+}
+
+#stopButton{
+    background-color: red;
+    color: white;
+}
+
+#status{
+    height: 100%;
+    width: 100%;
+    display: grid;
+}

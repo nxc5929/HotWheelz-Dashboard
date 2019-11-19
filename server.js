@@ -25,10 +25,11 @@ var WebSocketService = require('ws').Server
 var wss = new WebSocketService({port: SERVER_PORT})
 var connections = new Array;
 
-wss.on('connection', newConnection)
+wss.on('connection', newConnection);
 
 function newConnection(client){
     console.log("New Browser Connection");
+    client.on('message', collectData);
     connections.push(client);
     client.on('close', function() { // when a client closes its connection
             console.log("Browser Connection Closed"); // print it out
@@ -98,6 +99,7 @@ function configureForUI(data){
 //--------------------------------------------------------
 // -----------------------SAVING DATA---------------------
 //--------------------------------------------------------
+var collectingData = false;
 var fs = require("fs");
 var moment = require('moment');
 const folder = "./data/"
@@ -105,11 +107,25 @@ if(!fs.existsSync(folder)){
     fs.mkdirSync(folder);
 }
 const csvWriter = require('csv-write-stream');
-var writer = csvWriter();
-writer.pipe(fs.createWriteStream(folder + getTimeStamp() + ".csv"));
+
+function collectData(collectData){
+    if(collectData == "true"){
+        writer = csvWriter();
+        var file = folder + getTimeStamp() + ".csv";
+        console.log("Start Collecting Data: "+ file);
+        writer.pipe(fs.createWriteStream(file));
+        collectingData = true;
+    }else if(collectingData){
+        console.log("Stop Collecting Data");
+        collectingData = false;
+        writer.end();
+    }
+}
 
 function saveData(data){
-    writer.write(data);
+    if(collectingData){
+        writer.write(data);
+    }
 }
 
 function getTimeStamp(){

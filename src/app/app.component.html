@@ -11,11 +11,14 @@
             <line-chart [data]=allData.lineChart></line-chart>
         </mat-card>
     </mat-grid-tile>
-    <mat-grid-tile [colspan]="1" [rowspan]="1" [style.background-color]="isConnected(allData.connected)">
-        <!-- Auxilary -->
-        <mat-card>
-            <h2>Connected to Xbee?</h2>
-        </mat-card>
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+        <!-- Status -->
+        <div id="status" [style.background-color]="isConnected(allData.connected)">
+            <h2 style="text-align: center">Connected to Xbee</h2>
+            <div *ngIf="collectingData; then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock><button mat-raised-button id="stopButton" (click)="collectData(false)">Stop Collecting Data</button></ng-template>
+            <ng-template #elseBlock><button mat-raised-button id="startButton" (click)="collectData(true)">Start Collecting Data</button></ng-template>
+        </div>
     </mat-grid-tile>
     <mat-grid-tile [colspan]="1" [rowspan]="3">
         <!-- Auxilary -->

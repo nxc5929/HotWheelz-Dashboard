@@ -9,6 +9,7 @@ export class AppComponent {
   title = 'HotWheelz-Dashboard';
   allData = {connected: false, voltage: 140, lineChart: [], realTime: [], aux: []};
   socket = new WebSocket("ws://localhost:8081");
+  collectingData: boolean = false;
 
   ngOnInit() {
     this.socket.onopen = this.openSocket;
@@ -37,6 +38,15 @@ export class AppComponent {
       return "lawngreen";
     }else{
       return "red";
+    }
+  }
+
+  collectData(collect: boolean){
+    if(this.allData.connected){
+      this.collectingData = collect;
+      this.socket.send(this.collectingData.toString());
+    }else{
+      alert("Cannot Collect Data - Please Connect XBee!!");
     }
   }
 

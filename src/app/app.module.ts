@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {MatButtonModule} from '@angular/material/button';
 
 import { AppComponent } from './app.component';
 import { LineChartComponent } from './graphs/line-chart/line-chart.component';
@@ -24,7 +25,8 @@ import { GaugeComponent } from './graphs/gauge/gauge.component';
   imports: [
     BrowserModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
