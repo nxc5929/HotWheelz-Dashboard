@@ -31,7 +31,7 @@
     "fs": "0.0.1-security",
     "highcharts": "^7.2.0",
     "highcharts-angular": "^2.4.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "path": "^0.12.7",
     "rxjs": "~6.4.0",
     "serialport": "^8.0.5",
